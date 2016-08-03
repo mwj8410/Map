@@ -1,0 +1,28 @@
+{
+  "author": "Matthew Jackson <mwj8410@gmail.com>",
+  "dependencies": {
+    "lodash": "4.13.1"
+	},
+	"description": "Intended for development of Map services for simulation engines",
+	"devDependencies": {
+	  "docker": "1.0.0",
+		"eslint": "2.11.1",
+		"expect": "^1.14.0",
+		"istanbul": "^0.4.2",
+		"mocha": "^2.4.5",
+		"Phae_guidelines": "https://github.com/Phaesynthe/Phae_guidelines.git"
+	},
+	"main": "",
+	"name": "Indus",
+	"repository": {
+		"type" : "git",
+		"url" : "https://github.com/Phaesynthe/indus.git"
+	},
+	"scripts": {
+	  "doc": "./node_modules/.bin/docker -o code_documentation -I -n -x node_modules,coverage,design_docs,documentation,testsHelpers,*.md",
+    "coverage": "istanbul cover _mocha app/**/*.spec.js",
+    "eslint": "eslint app",
+		"test": "npm run coverage && npm run eslint"
+	},
+	"version": "0.0.0"
+}

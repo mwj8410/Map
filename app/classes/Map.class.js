@@ -15,6 +15,20 @@ class Map {
     this.tileIndex = [];
   }
 
+  getEntityAtLocation (x, y) {
+    return _(this.entityIndex)
+      .find({ 'x': x, 'y': y });
+  }
+
+  getEntitiesInBlock (x, y, distance) {
+    return _(this.entityIndex)
+      .filter(tile =>
+        ( tile.x > x + distance || tile.x > x - distance ) &&
+        ( tile.y > y + distance || tile.y > y - distance )
+      )
+      .value()[0];
+  }
+
   /**
    * Fetches a single tile base on location.
    * @return null or a
@@ -37,11 +51,20 @@ class Map {
       .value()[0];
   }
 
+  loadEntities (entitiySet) {
+    this.entityIndex = this.this.entityIndex.concot(entitiySet);
+  }
+
   /**
    * Mounts a set of tiles to the furrent complete set of all tiles currently tracked.
+   *
    */
   loadTiles (tileSet) {
     this.tileIndex = this.tileIndex.concat(tileSet);
+  }
+
+  modifyTile (x, y, newType) {
+
   }
 }
 

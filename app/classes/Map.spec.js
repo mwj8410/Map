@@ -1,3 +1,4 @@
+'use strict';
 const expect = require('expect');
 const Map = require('./Map.class');
 
@@ -6,10 +7,9 @@ describe('Map', () => {
   it('can be instantiated', () => {
     var map = new Map();
     expect(typeof map).toBe('object');
-    expect(typeof map.loadTiles).toBe('function');
   });
 
-  it('allows tiles to be mounted and retrieved', () => {
+  it('allows Tiles to be mounted and retrieved', () => {
     var map = new Map();
     var tileFixture = [
       {
@@ -23,10 +23,11 @@ describe('Map', () => {
       }
     ];
     map.loadTiles(tileFixture);
-    expect(map.getTile(tileFixture[0].x, tileFixture[0].y).tileType).toBe(tileFixture[0].tileType);
+    expect(map.getTile(tileFixture[0].x, tileFixture[0].y).tileType)
+      .toBe(tileFixture[0].tileType);
   });
 
-  it('allows fetching tiles based on rectangular area', () => {
+  it('allows fetching Tiles based on rectangular area', () => {
     var map = new Map();
     var tileFixture = [
       {
@@ -40,7 +41,44 @@ describe('Map', () => {
       }
     ];
     map.loadTiles(tileFixture);
-    expect(map.getTilesInBlock(0, 0, 5).tileType).toBe(tileFixture[0].tileType);
+    expect(map.getTilesInBlock(0, 0, 5).tileType)
+      .toBe(tileFixture[0].tileType);
+  });
+
+  it('allows Entities to be mounted and retrieved', () => {
+    var map = new Map();
+    var entityFixture = [
+      {
+        entitiy: 1,
+        x: 0,
+        y: 0
+      }, {
+        entitiy: 2,
+        x: 1,
+        y: 0
+      }
+    ];
+    map.loadEntities(entityFixture);
+    expect(map.getEntitiesAtLocation(entityFixture[0].x, entityFixture[0].y).entitiy)
+      .toBe(entityFixture[0].entitiy);
+  });
+
+  it('allows fetching Entities based on rectangular area', () => {
+    var map = new Map();
+    var entityFixture = [
+      {
+        entitiy: 1,
+        x: 5,
+        y: 5
+      }, {
+        entitiy: 2,
+        x: 1,
+        y: 0
+      }
+    ];
+    map.loadEntities(entityFixture);
+    expect(map.getEntitiesInBlock(entityFixture[0].x, entityFixture[0].y, 10).entitiy)
+      .toBe(entityFixture[0].entitiy);
   });
 
 });

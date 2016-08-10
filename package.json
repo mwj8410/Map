@@ -1,6 +1,7 @@
 {
   "author": "Matthew Jackson <mwj8410@gmail.com>",
   "dependencies": {
+    "debug": "2.2.0",
     "lodash": "4.13.1"
 	},
 	"description": "Intended for development of Map services for simulation engines",

@@ -2,7 +2,10 @@
   "author": "Matthew Jackson <mwj8410@gmail.com>",
   "dependencies": {
     "debug": "2.2.0",
-    "lodash": "4.13.1"
+    "express": "4.14.0",
+    "lodash": "4.13.1",
+    "sqlite3": "3.1.4",
+    "tar.gz": "1.0.5"
 	},
 	"description": "Intended for development of Map services for simulation engines",
 	"devDependencies": {
@@ -23,6 +26,7 @@
 	  "doc": "./node_modules/.bin/docker -o code_documentation -I -n -x node_modules,coverage,design_docs,documentation,testsHelpers,*.md",
     "coverage": "istanbul cover _mocha app/**/*.spec.js",
     "eslint": "eslint app",
+    "start": "node app/app.js",
 		"test": "npm run coverage && npm run eslint"
 	},
 	"version": "0.0.0"

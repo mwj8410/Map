@@ -12,11 +12,30 @@ describe('state DB', () => {
 
   it('exists', () => expect(typeof stateDb).toBe('function'));
 
-  it('getStateIndexTableStructure()', () => expect(typeof stateDb.getStateIndexTableStructure)
-    .toBe('function'));
-
-  it('returns a string', () => {
-    expect(typeof stateDb.getStateIndexTableStructure())
-    .toBe('string');
+  it('createPlayerQuery()', () => {
+    var params = {};
+    expect(typeof stateDb.createPlayerQuery).toBe('function');
+    expect(typeof stateDb.createPlayerQuery(params)).toBe('string');
   });
+
+  it('getPlayerCharactersQuery()', () => {
+    expect(typeof stateDb.getPlayerCharactersQuery).toBe('function');
+    expect(typeof stateDb.getPlayerCharactersQuery()).toBe('string');
+  });
+
+  it('getPlayerCharacterIndexTableStructure()', () => {
+    expect(typeof stateDb.getPlayerCharacterIndexTableStructure).toBe('function');
+    expect(typeof stateDb.getPlayerCharacterIndexTableStructure()).toBe('string');
+  });
+
+  it('getStateIndexTableStructure()', () => {
+    expect(typeof stateDb.getStateIndexTableStructure).toBe('function');
+    expect(typeof stateDb.getStateIndexTableStructure()).toBe('string');
+  });
+
+  it('getWorldIndexTableStructure()', () => {
+    expect(typeof stateDb.getWorldIndexTableStructure).toBe('function');
+    expect(typeof stateDb.getWorldIndexTableStructure()).toBe('string');
+  });
+
 });

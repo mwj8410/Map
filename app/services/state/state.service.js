@@ -29,6 +29,18 @@ module.exports = (() => {
 
   return {
 
+    createPlayerCharacter (params) {
+      stateIndex.run(stateDb.createPlayerQuery(params));
+    },
+
+    getPlayerCharacters () {
+      var results = [];
+      stateIndex.each(stateDb.getPlayerCharactersQuery(), (err, row) => {
+        results.push(row);
+      });
+      return results;
+    },
+
     /**
      * getStateList
      * @callback callback

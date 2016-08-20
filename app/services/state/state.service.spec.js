@@ -11,6 +11,33 @@ const stateService = require('./state.service');
 describe('state service', () => {
   it('exists', () => expect(typeof stateService).toBe('object'));
 
+  describe('createPlayerCharacter()', () => {
+    const params = {
+      playerName: 'test player'
+    };
+
+    it('exists', () => expect(typeof stateService.createPlayerCharacter).toBe('function'));
+
+    it('runs without error', () => {
+      expect(() => {
+        stateService.createPlayerCharacter(params);
+      }).toNotThrow(Error);
+    });
+
+  });
+
+  describe('getPlayerCharacters()', () => {
+
+    it('exists', () => expect(typeof stateService.getPlayerCharacters).toBe('function'));
+
+    it('runs without error', () => {
+      expect(() => {
+        stateService.getPlayerCharacters();
+      }).toNotThrow(Error);
+    });
+
+  });
+
   describe('getStateList()', () => {
     it('exists', () => expect(typeof stateService.getStateList).toBe('function'));
   });

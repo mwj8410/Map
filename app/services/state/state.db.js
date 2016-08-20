@@ -5,12 +5,26 @@ States are world saves.
 
 class StateDb {
 
+  static createPlayerQuery (params) {
+    return [
+      'INSERT INTO player_character_index VALUES (',
+      params.playerName,
+      ')'
+    ].join(' ');
+  }
+
   static getPlayerCharacterIndexTableStructure () {
     return [
       'CREATE TABLE player_character_index (',
       'id INT(11) PRIMARY KEY,',
-      'world_name VARCHAR(255) NOT NULL',
+      'player_name VARCHAR(255) NOT NULL',
       ');'
+    ].join(' ');
+  }
+
+  static getPlayerCharactersQuery () {
+    return [
+      'SELECT * FROM player_character_index;'
     ].join(' ');
   }
 

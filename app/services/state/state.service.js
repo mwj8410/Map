@@ -1,82 +1,82 @@
-// const fs = require('fs');
+const fs = require('fs');
 // const path = require('path');
-const sqlite3 = require('sqlite3').verbose();
-
-const stateDb = require('./state.db');
+// const _ = require('lodash');
 
 const dataBasePath = 'app/data/';
 
 module.exports = (() => {
 
-  var openDatabase = dbName => new sqlite3.Database(dataBasePath + dbName);
-  var stateIndex = openDatabase('stateIndex.pkg');
+  var stateIndexDB;
 
-  // Initialize BD
-  stateIndex.get(
-    'select count(*) from sqlite_master where type = "table";',
-    (err, res) => {
-      if (err) {
-        // console.log(err);
-      }
-      if (res['count(*)'] === 0) {
-        // We need to build the DB
-        // console.log('creating state database');
-        stateIndex.run(stateDb.getPlayerCharacterIndexTableStructure());
-        stateIndex.run(stateDb.getWorldIndexTableStructure());
-      }
+  // var stateIndexDB;
+
+  // If the main database file does not exist, create it
+  fs.stat(dataBasePath + 'stateIndex.json', err => {
+    if(err && err.code == 'ENOENT') {
+      fs.writeFile(
+        dataBasePath + 'stateIndex.json',
+        [
+          '{',
+          '"playerCharacterIndex":[],',
+          '"stateIndex:[],"',
+          '"worldIndex":[]',
+          '}'
+        ].join('')
+      );
     }
-  );
+  });
+
+  // Needs to actually read the file rather create and forget
+  stateIndexDB = {
+    playerCharacterIndex: [],
+    stateIndex: [],
+    worldIndex: []
+  };
 
   return {
-
+    // CREATE methods
     createPlayerCharacter (params) {
-      stateIndex.run(stateDb.createPlayerQuery(params));
+      stateIndexDB.playerCharacterIndex.push({
+        playerName: params.playerName
+      });
     },
 
-    getPlayerCharacters () {
-      var results = [];
-      stateIndex.each(stateDb.getPlayerCharactersQuery(), (err, row) => {
-        results.push(row);
+    createState (params) {
+      stateIndexDB.stateIndex.push({
+        stateName: params.stateName
       });
-      return results;
+    },
+
+    createWorld (params) {
+      stateIndexDB.worldIndex.push({
+        worldName: params.worldName
+      });
+    },
+
+    // GET methods
+    /**
+     * getPlayerCharacterList
+     * @returns {Array} collection of character objects
+     */
+    getPlayerCharacterList () {
+      return stateIndexDB.playerCharacterIndex;
     },
 
     /**
      * getStateList
-     * @callback callback
+     * @returns {Array} collection of state objects
      */
     getStateList () {
-
-      // worldIndex.serialize(() => {
-        // stateIndex.run('CREATE TABLE lorem (info TEXT)');
-
-        // stmt = worldIndex.prepare('INSERT INTO lorem VALUES (?)');
-        // for (i = 0; i < 10; i++) {
-        //   stmt.run('Ipsum ' + i);
-        // }
-        // stmt.finalize();
-
-        // stateIndex.each('SELECT rowid AS id, info FROM lorem', (err, row) => {
-        //   console.log(row.id + ': ' + row.info);
-        // });
-      // });
-      return;
+      return stateIndexDB.stateIndex;
     },
 
     /**
-     * openState
-     * @param {string} stateName
+     * getWorldList
+     * @returns {Array} collection of world objects
      */
-    openState (stateName) {
-      return stateName;
-    },
-
-    /**
-     * saveState
-     * @param {string} stateName
-     */
-    saveState (stateName) {
-      return stateName;
+    getWorldList () {
+      return stateIndexDB.worldIndex;
     }
+
   };
 })();

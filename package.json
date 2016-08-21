@@ -11,17 +11,21 @@
 	  "docker": "1.0.0",
 		"eslint": "2.11.1",
 		"expect": "^1.14.0",
+    "include-all": "0.1.6",
 		"istanbul": "^0.4.2",
 		"mocha": "^2.4.5",
-		"Phae_guidelines": "https://github.com/Phaesynthe/Phae_guidelines.git"
+    "npm-run-all": "3.0.0",
+		"Phae_guidelines": "https://github.com/Phaesynthe/Phae_guidelines.git",
+    "supertest": "2.0.0"
 	},
 	"main": "",
-	"name": "Indus",
+	"name": "MapManager",
 	"repository": {
 		"type" : "git",
 		"url" : "https://github.com/Phaesynthe/indus.git"
 	},
 	"scripts": {
+    "api": "mocha tests/integration.spec.js",
 	  "doc": "./node_modules/.bin/docker -o code_documentation -I -n -x node_modules,coverage,design_docs,documentation,testsHelpers,*.md",
     "coverage": "istanbul cover _mocha app/**/*.spec.js",
     "eslint": "eslint app",

@@ -51,51 +51,6 @@ module.exports = server => {
 
     });
 
-    // describe('list/', () => {
-    //
-    //   it('returns an empty list of states when there are no states', done => {
-    //     request.agent(server)
-    //       .get('/state/list')
-    //       .send()
-    //       .expect(200, (err, res) => {
-    //         if (err) {
-    //           done(err);
-    //           return;
-    //         }
-    //         expect(res.body.length).toBe(0);
-    //         done();
-    //       });
-    //   });
-    //
-    //   it('accepts an attempt to create a new state', done => {
-    //     request.agent(server)
-    //       .post('/state/list')
-    //       .send({
-    //         stateName: 'test state name'
-    //       })
-    //       .expect(200, err => {
-    //         if (err) done(err);
-    //         else done();
-    //       });
-    //   });
-    //
-    //   it('returns a list with the newly created state', done => {
-    //     request.agent(server)
-    //       .get('/state/list')
-    //       .send()
-    //       .expect(200, (err, res) => {
-    //         if (err) {
-    //           done(err);
-    //           return;
-    //         }
-    //         expect(res.body.length).toBe(1);
-    //         expect(res.body[0].stateName).toBe('test state name');
-    //         done();
-    //       });
-    //   });
-    //
-    // });
-
     describe('world/', () => {
 
       it('list/ returns an empty list of worlds when there are no worlds', done => {

@@ -1,5 +1,6 @@
 // External requirements
 const express = require('express');
+const bodyParser = require('body-parser');
 // const session = require('express-session'); // We will need this at some point
 
 // service requirements
@@ -10,16 +11,20 @@ const ip = '0.0.0.0';
 const port = '4242';
 
 var app = express();
+var server;
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // We assume that this will be a served API
 
 // const stateService = require('./services/state/state.service');
 // stateService.getStateList();
 
-const routs = require('./routs');
+const routs = require('./routs.index');
 
 // Start the server
-var server = app.listen(port, ip, () => {
+server = app.listen(port, ip, () => {
   // console.log('Demo server listening at', port, ip);
 });
 

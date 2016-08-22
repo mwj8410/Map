@@ -18,18 +18,6 @@ describe('state service', () => {
     });
   });
 
-  describe('createState()', () => {
-    const params = {
-      stateName: 'test state'
-    };
-    it('exists', () => expect(typeof stateService.createState).toBe('function'));
-    it('runs without error', () => {
-      expect(() => {
-        stateService.createState(params);
-      }).toNotThrow(Error);
-    });
-  });
-
   describe('createWorld()', () => {
     const params = {
       worldName: 'test world'
@@ -50,19 +38,10 @@ describe('state service', () => {
       }).toNotThrow(Error);
     });
     it('provides a list of current players', () => {
-      expect(stateService.getPlayerCharacterList()[0].playerName).toBe('test player');
-    });
-  });
-
-  describe('getStateList()', () => {
-    it('exists', () => expect(typeof stateService.getStateList).toBe('function'));
-    it('runs without error', () => {
-      expect(() => {
-        stateService.getStateList();
-      }).toNotThrow(Error);
-    });
-    it('provides a list of current states', () => {
-      expect(stateService.getStateList()[0].stateName).toBe('test state');
+      var playerData = stateService.getPlayerCharacterList()[0];
+      expect(typeof playerData.id).toBe('string');
+      expect(typeof playerData.fileName).toBe('string');
+      expect(playerData.name).toBe('test player');
     });
   });
 
@@ -74,7 +53,10 @@ describe('state service', () => {
       }).toNotThrow(Error);
     });
     it('provides a list of current worlds', () => {
-      expect(stateService.getWorldList()[0].worldName).toBe('test world');
+      var worldData = stateService.getWorldList()[0];
+      expect(typeof worldData.id).toBe('string');
+      expect(typeof worldData.fileName).toBe('string');
+      expect(worldData.name).toBe('test world');
     });
   });
 

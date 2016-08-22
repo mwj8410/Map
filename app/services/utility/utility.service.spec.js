@@ -10,12 +10,13 @@ const utilityService = require('./utility.service');
 describe('utility service', () => {
   it('exists', () => expect(typeof utilityService).toBe('object'));
 
-  describe('generateIdString()', () => {
-    it('exists', () => expect(typeof utilityService.generateIdString).toBe('function'));
+  describe('generateUniqueString()', () => {
+    it('exists', () => expect(typeof utilityService.generateUniqueString)
+      .toBe('function'));
 
-    it('generates a reasonably unique id', () => {
+    it('generates a reasonably unique string', () => {
       var expression = /[a-f0-9]{12}/;
-      expect(expression.test(utilityService.generateIdString())).toBe(true);
+      expect(expression.test(utilityService.generateUniqueString())).toBe(true);
     });
   });
 

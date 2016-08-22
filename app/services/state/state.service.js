@@ -2,6 +2,8 @@ const fs = require('fs');
 // const path = require('path');
 // const _ = require('lodash');
 
+const util = require('../utility/utility.service');
+
 const dataBasePath = 'data/';
 
 module.exports = (() => {
@@ -35,39 +37,34 @@ module.exports = (() => {
 
   return {
     // CREATE methods
+
     createPlayerCharacter (params) {
       stateIndexDB.playerCharacterIndex.push({
-        playerName: params.playerName
+        id: params.id || util.generateUUID(),
+        fileName: params.fileName || util.generateUniqueString(),
+        name: params.playerName
       });
     },
 
-    createState (params) {
-      stateIndexDB.stateIndex.push({
-        stateName: params.stateName
-      });
-    },
-
+    /**
+     * createWorld
+     */
     createWorld (params) {
       stateIndexDB.worldIndex.push({
-        worldName: params.worldName
+        id: params.id || util.generateUUID(),
+        fileName: params.fileName || util.generateUniqueString(),
+        name: params.worldName
       });
     },
 
     // GET methods
+
     /**
      * getPlayerCharacterList
      * @returns {Array} collection of character objects
      */
     getPlayerCharacterList () {
       return stateIndexDB.playerCharacterIndex;
-    },
-
-    /**
-     * getStateList
-     * @returns {Array} collection of state objects
-     */
-    getStateList () {
-      return stateIndexDB.stateIndex;
     },
 
     /**

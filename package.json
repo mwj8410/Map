@@ -30,7 +30,7 @@
     "integration": "mocha tests/integration.spec.js",
     "start": "node app/app.js",
     "test": "npm run unit && npm run integration && npm run eslint",
-    "unit": "istanbul cover _mocha app/**/*.spec.js",
+    "unit": "istanbul cover _mocha app/**/*.spec.js"
   },
   "version": "0.0.0"
 }

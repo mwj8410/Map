@@ -1,3 +1,5 @@
+Currenty Slated for additional refactor into Clojure. Project ATuin.
+
 # Map [![Build Status](https://travis-ci.org/mwj8410/Map.svg?branch=master)](https://travis-ci.org/mwj8410/Map)
 
 This refactor is to express the map as a 3 dimensional representation of a 2
